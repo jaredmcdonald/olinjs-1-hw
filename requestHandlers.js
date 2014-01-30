@@ -30,10 +30,10 @@ exports.upload = function(request, response) {
       console.log("parsing done");
       /* Possible error on Windows systems:
          tried to rename to an already existing file */
-      fs.rename(files.upload.path, "tmp/test.png", function(err) {
+      fs.rename(files.upload.path, "/tmp/test.png", function(err) {
         if (err) {
-          fs.unlink("tmp/test.png");
-          fs.rename(files.upload.path, "tmp/test.png");
+          fs.unlink("/tmp/test.png");
+          fs.rename(files.upload.path, "/tmp/test.png");
         }
       });
       response.writeHead(200, {"Content-Type": "text/html"});
@@ -45,7 +45,7 @@ exports.upload = function(request, response) {
 
 exports.show = function(request, response) {
   console.log('Request handler "show" was called');
-  fs.readFile('tmp/test.png', 'binary', function(err, file) {
+  fs.readFile('/tmp/test.png', 'binary', function(err, file) {
     if(err) {
       response.writeHead(500, {'Content-Type': 'text/plain'});
       response.write(err + '\n');
