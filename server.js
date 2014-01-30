@@ -3,7 +3,7 @@ var http = require('http'),
 
 function start(route, handle) {
     http.createServer(function(request, response) {
-      var pathname = url.parse(request.url).pathname,
+      var pathname = url.parse(request.url).pathname;
       console.log('Request for ' + pathname +  ' recieved');
       route(handle, pathname, request, response);
     }).listen(process.env.PORT || 8888);
